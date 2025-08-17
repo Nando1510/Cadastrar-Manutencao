@@ -6,10 +6,10 @@ async function salvar_Banco() {
 
   const nome_Input1 = document.getElementById('id_Input1').value;
   const nome_Input2 = parseFloat(document.getElementById('id_Input2').value);
-  const nome_Input3 = parseFloat(document.getElementById('id_Input3').value);
+  
   
 
-  if (!nome_Input1 || !nome_Input2 || !nome_Input3) {
+  if (!nome_Input1 || !nome_Input2) {
     alert('Preencha todos os campos!');
     return;
   }
@@ -18,7 +18,7 @@ async function salvar_Banco() {
     const resposta = await fetch('/salvar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome_Input1, nome_Input2, nome_Input3})
+      body: JSON.stringify({ nome_Input1, nome_Input2})
     });
 
     const data = await resposta.json();
@@ -27,7 +27,7 @@ async function salvar_Banco() {
       alert(data.message);
       document.getElementById('id_Input1').value = '';
       document.getElementById('id_Input2').value = '';
-      document.getElementById('id_Input3').value = '';
+      
       
     } else {
       alert('Erro ao salvar: ' + data.message);
